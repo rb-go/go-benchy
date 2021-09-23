@@ -17,6 +17,8 @@ github.com/golang-jwt/jwt/v4 v4.0.1-0.20210910214455-02bc1ac5067c h1:3uUdsb5NE/e
 github.com/golang-jwt/jwt/v4 v4.0.1-0.20210910214455-02bc1ac5067c/go.mod h1:/xlHOz8bRuivTWchD4jCa+NbatV+wEUSzwAxVc6locg=
 github.com/google/go-cmp v0.4.0 h1:xsAVV57WRhGj6kEIi8ReJzQlHHqcBYCElAvkovg3B/4=
 github.com/google/go-cmp v0.4.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
+github.com/kataras/jwt v0.1.2 h1:827BBMK2/PQc1Y209cPKeAChyx1mvfW9I3LE0GJ5V8A=
+github.com/kataras/jwt v0.1.2/go.mod h1:4ss3aGJi58q3YGmhLUiOvNJnL7UlTXD7+Wf+skgsTmQ=
 github.com/lestrrat-go/backoff/v2 v2.0.8 h1:oNb5E5isby2kiro9AgdHLv5N5tint1AnDVVf2E2un5A=
 github.com/lestrrat-go/backoff/v2 v2.0.8/go.mod h1:rHP/q/r9aT27n24JQLa7JhSQZCKBBOiM/uP402WwN8Y=
 github.com/lestrrat-go/blackmagic v1.0.0 h1:XzdxDbuQTz0RZZEmdU7cnQxUtFUzgCSPq8RCz4BxIi4=

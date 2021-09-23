@@ -6,10 +6,14 @@ import (
 )
 
 type JWTer interface {
-	CreateString(jti, iss, sub string, aud []string, ttl time.Duration, payload PayloadData) (string, error)
-	CreateBytes(jti, iss, sub string, aud []string, ttl time.Duration, payload PayloadData) ([]byte, error)
-	ValidateStr(token string) (bool, error)
-	ValidateBytes(token []byte) (bool, error)
+	CreateStringHS256(jti, iss, sub string, aud []string, ttl time.Duration, payload PayloadData) (string, error)
+	CreateStringRS256(jti, iss, sub string, aud []string, ttl time.Duration, payload PayloadData) (string, error)
+	CreateBytesHS256(jti, iss, sub string, aud []string, ttl time.Duration, payload PayloadData) ([]byte, error)
+	CreateBytesRS256(jti, iss, sub string, aud []string, ttl time.Duration, payload PayloadData) ([]byte, error)
+	ValidateStrHS256(token string) (bool, error)
+	ValidateStrRS256(token string) (bool, error)
+	ValidateBytesHS256(token []byte) (bool, error)
+	ValidateBytesRS256(token []byte) (bool, error)
 }
 
 type PayloadData struct {

@@ -1,48 +1,45 @@
-package gbrlsnchs
+package cristalhq
 
 import (
 	"crypto/rsa"
 	"time"
 
-	jwtb "github.com/gbrlsnchs/jwt/v3"
+	jwtb "github.com/kataras/jwt"
 	"github.com/rb-pkg/benchy/jwt"
 )
 
-// https://github.com/gbrlsnchs/jwt
-// очень неплохой пакет, не сильно медленнее чем cristalhq_jwt,
-// разница в аллокациях не большая, нужно смотреть дальше на удобство и функционал
+// https://github.com/cristalhq/jwt
 
 type JWT struct {
-	key        *jwtb.HMACSHA
-	keyRS      *jwtb.RSASHA
+	key        []byte
 	privateKey *rsa.PrivateKey
 	publicKey  *rsa.PublicKey
 }
 
-type CustomPayload struct {
-	jwtb.Payload
+type UserClaims struct {
+	jwtb.Claims
 	jwt.PayloadData
 }
 
 func NewJWT(key []byte, privateKey *rsa.PrivateKey, publicKey *rsa.PublicKey) *JWT {
-	return &JWT{
-		key:        jwtb.NewHS256(key),
-		keyRS:      jwtb.NewRS256(jwtb.RSAPrivateKey(privateKey), jwtb.RSAPublicKey(publicKey)),
+	res := &JWT{
+		key:        key,
 		privateKey: privateKey,
 		publicKey:  publicKey,
 	}
+	return res
 }
 
-func prepareToken(jti, iss, sub string, aud []string, ttl time.Duration, payload jwt.PayloadData) CustomPayload {
-	return CustomPayload{
-		Payload: jwtb.Payload{
-			Issuer:         iss,
-			Subject:        sub,
-			Audience:       aud,
-			ExpirationTime: jwtb.NumericDate(time.Now().Add(ttl)),
-			NotBefore:      jwtb.NumericDate(time.Now()),
-			IssuedAt:       jwtb.NumericDate(time.Now()),
-			JWTID:          jti,
+func prepareToken(jti, iss, sub string, aud []string, ttl time.Duration, payload jwt.PayloadData) UserClaims {
+	return UserClaims{
+		Claims: jwtb.Claims{
+			ID:        jti,
+			Issuer:    iss,
+			Subject:   sub,
+			Audience:  aud,
+			Expiry:    time.Now().Add(ttl).Unix(),
+			IssuedAt:  time.Now().Unix(),
+			NotBefore: time.Now().Unix(),
 		},
 		PayloadData: payload,
 	}
@@ -50,7 +47,7 @@ func prepareToken(jti, iss, sub string, aud []string, ttl time.Duration, payload
 
 func (j *JWT) CreateStringHS256(jti, iss, sub string, aud []string, ttl time.Duration, payload jwt.PayloadData) (string, error) {
 	claims := prepareToken(jti, iss, sub, aud, ttl, payload)
-	token, err := jwtb.Sign(claims, j.key)
+	token, err := jwtb.Sign(jwtb.HS256, j.key, claims)
 	if err != nil {
 		return "", err
 	}
@@ -59,12 +56,12 @@ func (j *JWT) CreateStringHS256(jti, iss, sub string, aud []string, ttl time.Dur
 
 func (j *JWT) CreateBytesHS256(jti, iss, sub string, aud []string, ttl time.Duration, payload jwt.PayloadData) ([]byte, error) {
 	claims := prepareToken(jti, iss, sub, aud, ttl, payload)
-	return jwtb.Sign(claims, j.key)
+	return jwtb.Sign(jwtb.HS256, j.key, claims)
 }
 
 func (j *JWT) CreateStringRS256(jti, iss, sub string, aud []string, ttl time.Duration, payload jwt.PayloadData) (string, error) {
 	claims := prepareToken(jti, iss, sub, aud, ttl, payload)
-	token, err := jwtb.Sign(claims, j.keyRS)
+	token, err := jwtb.Sign(jwtb.RS256, j.privateKey, claims)
 	if err != nil {
 		return "", err
 	}
@@ -73,7 +70,7 @@ func (j *JWT) CreateStringRS256(jti, iss, sub string, aud []string, ttl time.Dur
 
 func (j *JWT) CreateBytesRS256(jti, iss, sub string, aud []string, ttl time.Duration, payload jwt.PayloadData) ([]byte, error) {
 	claims := prepareToken(jti, iss, sub, aud, ttl, payload)
-	return jwtb.Sign(claims, j.keyRS)
+	return jwtb.Sign(jwtb.RS256, j.privateKey, claims)
 }
 
 func (j *JWT) ValidateStrHS256(token string) (bool, error) {

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func BenchmarkJWT_Create_String_Empty_Parallel(b *testing.B) {
+func BenchmarkJWT_Create_RS256_String_Empty_Parallel(b *testing.B) {
 	for isl := range stublist {
 		taskKey := fmt.Sprintf("%s", stublist[isl].name)
 		b.Run(taskKey, func(bs *testing.B) {
@@ -13,7 +13,7 @@ func BenchmarkJWT_Create_String_Empty_Parallel(b *testing.B) {
 			b.ReportAllocs()
 			bs.RunParallel(func(pb *testing.PB) {
 				for pb.Next() {
-					_, err := stublist[isl].processor.CreateString(JWTID, Issuer, Subject, Audience, TimeToLive, plEmptyData)
+					_, err := stublist[isl].processor.CreateStringRS256(JWTID, Issuer, Subject, Audience, TimeToLive, plEmptyData)
 					if err != nil {
 						bs.Fatalf("invalid jwt create: %s, err: %+v", taskKey, err)
 					}
@@ -24,7 +24,7 @@ func BenchmarkJWT_Create_String_Empty_Parallel(b *testing.B) {
 	splitTests()
 }
 
-func BenchmarkJWT_Create_Bytes_Empty_Parallel(b *testing.B) {
+func BenchmarkJWT_Create_RS256_Bytes_Empty_Parallel(b *testing.B) {
 	for isl := range stublist {
 		taskKey := fmt.Sprintf("%s", stublist[isl].name)
 		b.Run(taskKey, func(bs *testing.B) {
@@ -32,7 +32,7 @@ func BenchmarkJWT_Create_Bytes_Empty_Parallel(b *testing.B) {
 			b.ReportAllocs()
 			bs.RunParallel(func(pb *testing.PB) {
 				for pb.Next() {
-					_, err := stublist[isl].processor.CreateBytes(JWTID, Issuer, Subject, Audience, TimeToLive, plEmptyData)
+					_, err := stublist[isl].processor.CreateBytesRS256(JWTID, Issuer, Subject, Audience, TimeToLive, plEmptyData)
 					if err != nil {
 						bs.Fatalf("invalid jwt create: %s, err: %+v", taskKey, err)
 					}
@@ -43,7 +43,7 @@ func BenchmarkJWT_Create_Bytes_Empty_Parallel(b *testing.B) {
 	splitTests()
 }
 
-func BenchmarkJWT_Create_String_Filled_Parallel(b *testing.B) {
+func BenchmarkJWT_Create_RS256_String_Filled_Parallel(b *testing.B) {
 	for isl := range stublist {
 		taskKey := fmt.Sprintf("%s", stublist[isl].name)
 		b.Run(taskKey, func(bs *testing.B) {
@@ -51,7 +51,7 @@ func BenchmarkJWT_Create_String_Filled_Parallel(b *testing.B) {
 			b.ReportAllocs()
 			bs.RunParallel(func(pb *testing.PB) {
 				for pb.Next() {
-					_, err := stublist[isl].processor.CreateString(JWTID, Issuer, Subject, Audience, TimeToLive, plData)
+					_, err := stublist[isl].processor.CreateStringRS256(JWTID, Issuer, Subject, Audience, TimeToLive, plData)
 					if err != nil {
 						bs.Fatalf("%s, err: %+v", taskKey, err)
 					}
@@ -62,7 +62,7 @@ func BenchmarkJWT_Create_String_Filled_Parallel(b *testing.B) {
 	splitTests()
 }
 
-func BenchmarkJWT_Create_Bytes_Filled_Parallel(b *testing.B) {
+func BenchmarkJWT_Create_RS256_Bytes_Filled_Parallel(b *testing.B) {
 	for isl := range stublist {
 		taskKey := fmt.Sprintf("%s", stublist[isl].name)
 		b.Run(taskKey, func(bs *testing.B) {
@@ -70,7 +70,7 @@ func BenchmarkJWT_Create_Bytes_Filled_Parallel(b *testing.B) {
 			b.ReportAllocs()
 			bs.RunParallel(func(pb *testing.PB) {
 				for pb.Next() {
-					_, err := stublist[isl].processor.CreateBytes(JWTID, Issuer, Subject, Audience, TimeToLive, plData)
+					_, err := stublist[isl].processor.CreateBytesRS256(JWTID, Issuer, Subject, Audience, TimeToLive, plData)
 					if err != nil {
 						b.Fatalf("%s, err: %+v", taskKey, err)
 					}
