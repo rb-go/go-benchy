@@ -9,15 +9,15 @@ import (
 	"strings"
 	"time"
 
-	kataras "github.com/rb-pkg/benchy/jwt/kataras_jwt"
+	kataras "github.com/riftbit/go-benchy/jwt/kataras_jwt"
 
-	"github.com/rb-pkg/benchy/jwt"
-	brianvoe "github.com/rb-pkg/benchy/jwt/brianvoe_sjwt"
-	cristalhq "github.com/rb-pkg/benchy/jwt/cristalhq_jwt"
-	gbrlsnchs "github.com/rb-pkg/benchy/jwt/gbrlsnchs_jwt"
-	golang_jwt "github.com/rb-pkg/benchy/jwt/golang-jwt_jwt"
-	lestrrat_go "github.com/rb-pkg/benchy/jwt/lestrrat-go_jwx"
-	pascaldekloe "github.com/rb-pkg/benchy/jwt/pascaldekloe_jwt"
+	"github.com/riftbit/go-benchy/jwt"
+	brianvoe "github.com/riftbit/go-benchy/jwt/brianvoe_sjwt"
+	cristalhq "github.com/riftbit/go-benchy/jwt/cristalhq_jwt"
+	gbrlsnchs "github.com/riftbit/go-benchy/jwt/gbrlsnchs_jwt"
+	golang_jwt "github.com/riftbit/go-benchy/jwt/golang-jwt_jwt"
+	lestrrat_go "github.com/riftbit/go-benchy/jwt/lestrrat-go_jwx"
+	pascaldekloe "github.com/riftbit/go-benchy/jwt/pascaldekloe_jwt"
 )
 
 const JWTID = "ergoz"

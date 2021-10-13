@@ -5,7 +5,7 @@ import (
 	"time"
 
 	jwtb "github.com/golang-jwt/jwt/v4"
-	"github.com/rb-pkg/benchy/jwt"
+	"github.com/riftbit/go-benchy/jwt"
 )
 
 // https://github.com/golang-jwt/jwt

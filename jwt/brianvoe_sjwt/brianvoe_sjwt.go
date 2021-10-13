@@ -5,7 +5,7 @@ import (
 	"time"
 
 	sjwt "github.com/brianvoe/sjwt"
-	"github.com/rb-pkg/benchy/jwt"
+	"github.com/riftbit/go-benchy/jwt"
 )
 
 // https://github.com/brianvoe/sjwt

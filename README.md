@@ -6,16 +6,16 @@ Golang benchmarks
 
 ## jwt
 
-github.com/rb-pkg/benchy/jwt
+github.com/riftbit/go-benchy/jwt
 
 ```
-go test -benchmem -cpu 8 -benchtime=5s -bench=. github.com/rb-pkg/benchy/jwt
+go test -benchmem -cpu 8 -benchtime=5s -bench=. github.com/riftbit/go-benchy/jwt
 ```
 
 ```
 goos: windows
 goarch: amd64
-pkg: github.com/rb-pkg/benchy/jwt
+pkg: github.com/riftbit/go-benchy/jwt
 cpu: Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz
 BenchmarkJWT_Create_HS256_String_Empty_Parallel/cristalhq_jwt-8                  6729601               865.5 ns/op          1908 B/op         18 allocs/op
 BenchmarkJWT_Create_HS256_String_Empty_Parallel/kataras_jwt-8                    6470664               976.7 ns/op          2879 B/op         17 allocs/op
@@ -146,21 +146,21 @@ BenchmarkJWT_Create_RS256_Bytes_Filled/lestrrat-go_jwx-8                        
 BenchmarkJWT_Create_RS256_Bytes_Filled/brianvoe_sjwt-8                                 3        2009364800 ns/op         3812690 B/op        387 allocs/op
 ===========================================================================================================================================================
 PASS
-ok      github.com/rb-pkg/benchy/jwt    892.727s
+ok      github.com/riftbit/go-benchy/jwt    892.727s
 ```
 
 ## str_concat
 
-github.com/rb-pkg/benchy/str_concat
+github.com/riftbit/go-benchy/str_concat
 
 ```
-go test -benchmem -cpu 8 -benchtime=5s -bench=. github.com/rb-pkg/benchy/str_concat
+go test -benchmem -cpu 8 -benchtime=5s -bench=. github.com/riftbit/go-benchy/str_concat
 ```
 
 ```
 goos: windows
 goarch: amd64
-pkg: github.com/rb-pkg/benchy/str_concat
+pkg: github.com/riftbit/go-benchy/str_concat
 cpu: Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz
 Benchmark_Pluses-8                      76898232                75.75 ns/op          288 B/op          1 allocs/op
 Benchmark_Pluses_Parallel-8             90836283                59.25 ns/op          288 B/op          1 allocs/op
@@ -173,5 +173,5 @@ Benchmark_StringBuilder_Parallel-8      69310476                72.26 ns/op     
 Benchmark_ByteBufferPool-8              63559254               104.2 ns/op           288 B/op          1 allocs/op
 Benchmark_ByteBufferPool_Parallel-8     73387044                77.55 ns/op          288 B/op          1 allocs/op
 PASS
-ok      github.com/rb-pkg/benchy/str_concat     62.717s
+ok      github.com/riftbit/go-benchy/str_concat     62.717s
 ```

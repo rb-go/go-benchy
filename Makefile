@@ -1,12 +1,19 @@
 .DEFAULT_GOAL := default
 
 .PHONY: default
-default: bench_all
+default: all
 
-bench_all: bench_str_concat bench_jwt
+.PHONY: all
+all: str_concat jwt idgen
 
-bench_str_concat:
-	go test -benchmem -cpu 1,2,4,8 -benchtime=5s -timeout 30m -bench=. github.com/rb-pkg/benchy/str_concat
+.PHONY: str_concat
+str_concat:
+	go test -benchmem -cpu 1,2,4,8 -benchtime=5s -timeout 30m -bench=. github.com/riftbit/go-benchy/str_concat
 
-bench_jwt:
-	go test -benchmem -cpu 1,2,4,8 -benchtime=5s -timeout 30m -bench=. github.com/rb-pkg/benchy/jwt
+.PHONY: jwt
+jwt:
+	go test -benchmem -cpu 1,2,4,8 -benchtime=5s -timeout 30m -bench=. github.com/riftbit/go-benchy/jwt
+
+.PHONY: idgen
+idgen:
+	go test -benchmem -cpu 1,2,4,8 -benchtime=5s -timeout 30m -bench=. github.com/riftbit/go-benchy/idgen

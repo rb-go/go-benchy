@@ -6,7 +6,7 @@ import (
 
 	"github.com/lestrrat-go/jwx/jwa"
 	jwtb "github.com/lestrrat-go/jwx/jwt"
-	"github.com/rb-pkg/benchy/jwt"
+	"github.com/riftbit/go-benchy/jwt"
 )
 
 // https://

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	jwtb "github.com/kataras/jwt"
-	"github.com/rb-pkg/benchy/jwt"
+	"github.com/riftbit/go-benchy/jwt"
 )
 
 // https://github.com/cristalhq/jwt
